@@ -15,10 +15,11 @@ app.use(cors());
 app.use("/auth", userRouter);
 app.use("/recipes", recipesRouter);
 
-mongoose.connect("mongodb+srv://chitraramkumar27:MERNpassword123@recipe.3eo2vxt.mongodb.net/recipe?retryWrites=true&w=majority");
+mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 
-app.listen(3001, () => 
-console.log("Server started..!")
+app.listen(process.env.PORT, () =>
+    console.log("Server started..!", process.env.PORT)
 );
-
-// process.env.MONGO_URL
